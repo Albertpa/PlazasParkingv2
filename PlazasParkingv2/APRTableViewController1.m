@@ -8,6 +8,7 @@
 
 #import "APRTableViewController1.h"
 #import "APRDetalleViewController.h"
+#import "APRPlaza.h"
 
 @interface APRTableViewController1 ()
 
@@ -28,6 +29,18 @@
 {
     [super viewDidLoad];
 
+    //SE TENDRA QUE MODIFICAR CON EL CORE DATA
+    //instanciamos nuestro modelo
+    self.modelo = [NSMutableArray new];
+    //llenamos con datos
+     APRPlaza * p1 = [[APRPlaza alloc] initWithNombre:@"0A" estado:@"libre" imagen:@"nocar.jpg"];
+     APRPlaza * p2 = [[APRPlaza alloc] initWithNombre:@"0B" estado:@"libre" imagen:@"nocar.jpg"];
+     APRPlaza * p3 = [[APRPlaza alloc] initWithNombre:@"0C" estado:@"libre" imagen:@"nocar.jpg"];
+    
+    [self.modelo addObject:p1];
+    [self.modelo addObject:p2];
+    [self.modelo addObject:p3];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -57,7 +70,7 @@
 
 //DEPENDIENDO DE LA SECCION DEBEREMOS RETORNAR EL NUMERO DE FILAS CORRESPONDIENTE-------
     // Return the number of rows in the section.
-    return 10;
+    return self.modelo.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -66,7 +79,10 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
-    cell.textLabel.text = [NSString stringWithFormat:@"Celda %d", indexPath.row];
+    //cell.textLabel.text = [NSString stringWithFormat:@"Celda %d", indexPath.row];
+    APRPlaza * p = [self.modelo objectAtIndex:indexPath.row];
+    cell.textLabel.text = p.numplaza;
+    
     return cell;
 }
 

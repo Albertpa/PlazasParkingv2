@@ -19,6 +19,18 @@
 		508731371764915A00A53A15 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 508731361764915A00A53A15 /* Storyboard.storyboard */; };
 		5087313A1764926C00A53A15 /* APRTableViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 508731391764926C00A53A15 /* APRTableViewController1.m */; };
 		5087313D1764942F00A53A15 /* APRDetalleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5087313C1764942F00A53A15 /* APRDetalleViewController.m */; };
+		50970BAC176CC2BA00227550 /* c0.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 50970BA1176CC2BA00227550 /* c0.jpeg */; };
+		50970BAD176CC2BA00227550 /* c1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 50970BA2176CC2BA00227550 /* c1.jpeg */; };
+		50970BAE176CC2BA00227550 /* c2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 50970BA3176CC2BA00227550 /* c2.jpeg */; };
+		50970BAF176CC2BA00227550 /* c3.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 50970BA4176CC2BA00227550 /* c3.jpeg */; };
+		50970BB0176CC2BA00227550 /* c4.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 50970BA5176CC2BA00227550 /* c4.jpeg */; };
+		50970BB1176CC2BA00227550 /* c5.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 50970BA6176CC2BA00227550 /* c5.jpeg */; };
+		50970BB2176CC2BA00227550 /* c6.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 50970BA7176CC2BA00227550 /* c6.jpeg */; };
+		50970BB3176CC2BA00227550 /* c7.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 50970BA8176CC2BA00227550 /* c7.jpeg */; };
+		50970BB4176CC2BA00227550 /* c8.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 50970BA9176CC2BA00227550 /* c8.jpeg */; };
+		50970BB5176CC2BA00227550 /* c9.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 50970BAA176CC2BA00227550 /* c9.jpeg */; };
+		50970BB6176CC2BA00227550 /* nocar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50970BAB176CC2BA00227550 /* nocar.jpg */; };
+		50970BB9176CC3D700227550 /* APRPlaza.m in Sources */ = {isa = PBXBuildFile; fileRef = 50970BB8176CC3D700227550 /* APRPlaza.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +52,19 @@
 		508731391764926C00A53A15 /* APRTableViewController1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APRTableViewController1.m; sourceTree = "<group>"; };
 		5087313B1764942F00A53A15 /* APRDetalleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APRDetalleViewController.h; sourceTree = "<group>"; };
 		5087313C1764942F00A53A15 /* APRDetalleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APRDetalleViewController.m; sourceTree = "<group>"; };
+		50970BA1176CC2BA00227550 /* c0.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = c0.jpeg; sourceTree = "<group>"; };
+		50970BA2176CC2BA00227550 /* c1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = c1.jpeg; sourceTree = "<group>"; };
+		50970BA3176CC2BA00227550 /* c2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = c2.jpeg; sourceTree = "<group>"; };
+		50970BA4176CC2BA00227550 /* c3.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = c3.jpeg; sourceTree = "<group>"; };
+		50970BA5176CC2BA00227550 /* c4.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = c4.jpeg; sourceTree = "<group>"; };
+		50970BA6176CC2BA00227550 /* c5.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = c5.jpeg; sourceTree = "<group>"; };
+		50970BA7176CC2BA00227550 /* c6.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = c6.jpeg; sourceTree = "<group>"; };
+		50970BA8176CC2BA00227550 /* c7.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = c7.jpeg; sourceTree = "<group>"; };
+		50970BA9176CC2BA00227550 /* c8.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = c8.jpeg; sourceTree = "<group>"; };
+		50970BAA176CC2BA00227550 /* c9.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = c9.jpeg; sourceTree = "<group>"; };
+		50970BAB176CC2BA00227550 /* nocar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nocar.jpg; sourceTree = "<group>"; };
+		50970BB7176CC3D700227550 /* APRPlaza.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APRPlaza.h; sourceTree = "<group>"; };
+		50970BB8176CC3D700227550 /* APRPlaza.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APRPlaza.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +111,7 @@
 		5087311F1764913D00A53A15 /* PlazasParkingv2 */ = {
 			isa = PBXGroup;
 			children = (
+				50970BA0176CC29800227550 /* images */,
 				508731361764915A00A53A15 /* Storyboard.storyboard */,
 				508731281764913D00A53A15 /* APRAppDelegate.h */,
 				508731291764913D00A53A15 /* APRAppDelegate.m */,
@@ -94,6 +120,8 @@
 				5087313B1764942F00A53A15 /* APRDetalleViewController.h */,
 				5087313C1764942F00A53A15 /* APRDetalleViewController.m */,
 				508731201764913D00A53A15 /* Supporting Files */,
+				50970BB7176CC3D700227550 /* APRPlaza.h */,
+				50970BB8176CC3D700227550 /* APRPlaza.m */,
 			);
 			path = PlazasParkingv2;
 			sourceTree = "<group>";
@@ -110,6 +138,24 @@
 				5087312F1764913D00A53A15 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		50970BA0176CC29800227550 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				50970BA1176CC2BA00227550 /* c0.jpeg */,
+				50970BA2176CC2BA00227550 /* c1.jpeg */,
+				50970BA3176CC2BA00227550 /* c2.jpeg */,
+				50970BA4176CC2BA00227550 /* c3.jpeg */,
+				50970BA5176CC2BA00227550 /* c4.jpeg */,
+				50970BA6176CC2BA00227550 /* c5.jpeg */,
+				50970BA7176CC2BA00227550 /* c6.jpeg */,
+				50970BA8176CC2BA00227550 /* c7.jpeg */,
+				50970BA9176CC2BA00227550 /* c8.jpeg */,
+				50970BAA176CC2BA00227550 /* c9.jpeg */,
+				50970BAB176CC2BA00227550 /* nocar.jpg */,
+			);
+			name = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,6 +215,17 @@
 				5087312E1764913D00A53A15 /* Default@2x.png in Resources */,
 				508731301764913D00A53A15 /* Default-568h@2x.png in Resources */,
 				508731371764915A00A53A15 /* Storyboard.storyboard in Resources */,
+				50970BAC176CC2BA00227550 /* c0.jpeg in Resources */,
+				50970BAD176CC2BA00227550 /* c1.jpeg in Resources */,
+				50970BAE176CC2BA00227550 /* c2.jpeg in Resources */,
+				50970BAF176CC2BA00227550 /* c3.jpeg in Resources */,
+				50970BB0176CC2BA00227550 /* c4.jpeg in Resources */,
+				50970BB1176CC2BA00227550 /* c5.jpeg in Resources */,
+				50970BB2176CC2BA00227550 /* c6.jpeg in Resources */,
+				50970BB3176CC2BA00227550 /* c7.jpeg in Resources */,
+				50970BB4176CC2BA00227550 /* c8.jpeg in Resources */,
+				50970BB5176CC2BA00227550 /* c9.jpeg in Resources */,
+				50970BB6176CC2BA00227550 /* nocar.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,6 +240,7 @@
 				5087312A1764913D00A53A15 /* APRAppDelegate.m in Sources */,
 				5087313A1764926C00A53A15 /* APRTableViewController1.m in Sources */,
 				5087313D1764942F00A53A15 /* APRDetalleViewController.m in Sources */,
+				50970BB9176CC3D700227550 /* APRPlaza.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +355,7 @@
 				508731351764913D00A53A15 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

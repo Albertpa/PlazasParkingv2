@@ -10,4 +10,7 @@
 
 @interface APRTableViewController1 : UITableViewController
 
+
+@property (strong) NSMutableArray * modelo;
+
 @end
