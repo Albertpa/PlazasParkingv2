@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="fI6-kB-xje">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
+    </dependencies>
+    <scenes>
+        <!--Tab Bar Controller-->
+        <scene sceneID="BUf-6u-Apm">
+            <objects>
+                <tabBarController definesPresentationContext="YES" id="fI6-kB-xje" sceneMemberID="viewController">
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="hca-bz-uWx">
+                        <rect key="frame" x="129" y="330" width="163" height="49"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="xqc-zo-RLY" kind="relationship" relationship="viewControllers" id="NxH-wS-5Ok"/>
+                        <segue destination="54r-rA-tMS" kind="relationship" relationship="viewControllers" id="yQy-ea-nor"/>
+                        <segue destination="RPg-gE-0xO" kind="relationship" relationship="viewControllers" id="LxQ-eQ-Y5Z"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gcg-HN-KYF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-245" y="2"/>
+        </scene>
+        <!--Table View Controller1 - Plazas del parking-->
+        <scene sceneID="ovL-Jv-1H2">
+            <objects>
+                <tableViewController storyboardIdentifier="tabla" id="Wqp-Q8-PZg" customClass="APRTableViewController1" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="4rh-4O-Mme">
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="nxN-Hz-UgY" style="IBUITableViewCellStyleDefault" id="pyb-IP-fnn">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nxN-Hz-UgY">
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Plazas del parking" id="E2r-Hk-4my"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SMR-D1-dkg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="797" y="-751"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="AqX-kS-cTz">
+            <objects>
+                <viewController storyboardIdentifier="detalle" id="Qks-5c-kvB" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="w1w-0G-ZDy">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="DETALLE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SwI-v9-w1g">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="SwI-v9-w1g" firstAttribute="centerX" secondItem="w1w-0G-ZDy" secondAttribute="centerX" type="default" id="5cq-vX-3Dd"/>
+                            <constraint firstItem="SwI-v9-w1g" firstAttribute="top" secondItem="w1w-0G-ZDy" secondAttribute="top" constant="263" id="U0K-cy-XP0"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e2U-pn-kfl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1340" y="-323"/>
+        </scene>
+        <!--Table View Controller - Root View Controller-->
+        <scene sceneID="caG-qZ-92f">
+            <objects>
+                <tableViewController id="bRj-SA-sAk" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="7Tf-Qd-cgO">
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="cKS-AI-iVl">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="fp3-BD-eq3"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IeR-kL-Ibl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="797" y="-14"/>
+        </scene>
+        <!--View Controller - Estado de ocupación-->
+        <scene sceneID="dhC-bo-6pm">
+            <objects>
+                <viewController id="RPg-gE-0xO" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="M62-eJ-ja4">
+                        <rect key="frame" x="0.0" y="20" width="320" height="499"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="ESTADO" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9wX-MZ-3y9">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="9wX-MZ-3y9" firstAttribute="centerX" secondItem="M62-eJ-ja4" secondAttribute="centerX" type="default" id="Q5b-TV-4wZ"/>
+                            <constraint firstItem="9wX-MZ-3y9" firstAttribute="top" secondItem="M62-eJ-ja4" secondAttribute="top" constant="94" id="SiP-u9-Dxw"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Estado de ocupación" id="FCJ-3v-Ewg"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0I4-db-V0R" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="293" y="708"/>
+        </scene>
+        <!--Navigation Controller - Plazas ocupadas-->
+        <scene sceneID="Hn6-LH-SVc">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="54r-rA-tMS" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Plazas ocupadas" id="nFX-Ml-foF"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4XA-45-jMR">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="bRj-SA-sAk" kind="relationship" relationship="rootViewController" id="47B-Zc-6SS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5pD-My-Fyg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="293" y="-14"/>
+        </scene>
+        <!--Navigation Controller - Gestión de plazas-->
+        <scene sceneID="l9Z-DF-1ML">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="xqc-zo-RLY" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Gestión de plazas" image="Default-568h@2x.png" id="fza-TB-5SR"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="PRT-RN-3jB">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Wqp-Q8-PZg" kind="relationship" relationship="rootViewController" id="Wp2-ZG-zHb"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZIm-ze-mqa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="293" y="-751"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Default-568h@2x.png" width="640" height="1136"/>
+    </resources>
+    <classes>
+        <class className="APRTableViewController1" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/APRTableViewController1.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+    </classes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
