@@ -33,9 +33,9 @@
     //instanciamos nuestro modelo
     self.modelo = [NSMutableArray new];
     //llenamos con datos
-     APRPlaza * p1 = [[APRPlaza alloc] initWithNombre:@"0A" estado:@"libre" imagen:@"nocar.jpg"];
-     APRPlaza * p2 = [[APRPlaza alloc] initWithNombre:@"0B" estado:@"libre" imagen:@"nocar.jpg"];
-     APRPlaza * p3 = [[APRPlaza alloc] initWithNombre:@"0C" estado:@"libre" imagen:@"nocar.jpg"];
+     APRPlaza * p1 = [[APRPlaza alloc] initWithNombre:@"0A" estado:@"Libre" imagen:@"nocar.jpg"];
+     APRPlaza * p2 = [[APRPlaza alloc] initWithNombre:@"0B" estado:@"Libre" imagen:@"nocar.jpg"];
+     APRPlaza * p3 = [[APRPlaza alloc] initWithNombre:@"0C" estado:@"Libre" imagen:@"nocar.jpg"];
     
     [self.modelo addObject:p1];
     [self.modelo addObject:p2];
@@ -75,14 +75,28 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    /*
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    */
+    UITableViewCell *cell;
+    cell  = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    if(cell == nil){
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"Cell"];
+    }
     
     // Configure the cell...
     //cell.textLabel.text = [NSString stringWithFormat:@"Celda %d", indexPath.row];
-    APRPlaza * p = [self.modelo objectAtIndex:indexPath.row];
-    cell.textLabel.text = p.numplaza;
     
+    APRPlaza * p = [self.modelo objectAtIndex:indexPath.row];
+    
+    cell.textLabel.text = p.numplaza;
+    cell.detailTextLabel.text = p.estado;
+    cell.imageView.image = [UIImage imageNamed:p.imagen];
+   /*
+    cell.accessoryView = ;
+    */
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     return cell;
 }
 
