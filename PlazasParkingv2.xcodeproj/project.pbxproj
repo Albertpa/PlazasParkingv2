@@ -31,6 +31,7 @@
 		50970BB5176CC2BA00227550 /* c9.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 50970BAA176CC2BA00227550 /* c9.jpeg */; };
 		50970BB6176CC2BA00227550 /* nocar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50970BAB176CC2BA00227550 /* nocar.jpg */; };
 		50970BB9176CC3D700227550 /* APRPlaza.m in Sources */ = {isa = PBXBuildFile; fileRef = 50970BB8176CC3D700227550 /* APRPlaza.m */; };
+		50F7ED701774A18D005FFBCD /* APREstadoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F7ED6F1774A18D005FFBCD /* APREstadoViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +66,8 @@
 		50970BAB176CC2BA00227550 /* nocar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = nocar.jpg; sourceTree = "<group>"; };
 		50970BB7176CC3D700227550 /* APRPlaza.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APRPlaza.h; sourceTree = "<group>"; };
 		50970BB8176CC3D700227550 /* APRPlaza.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APRPlaza.m; sourceTree = "<group>"; };
+		50F7ED6E1774A18D005FFBCD /* APREstadoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = APREstadoViewController.h; path = ../APREstadoViewController.h; sourceTree = "<group>"; };
+		50F7ED6F1774A18D005FFBCD /* APREstadoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = APREstadoViewController.m; path = ../APREstadoViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +122,8 @@
 				508731391764926C00A53A15 /* APRTableViewController1.m */,
 				5087313B1764942F00A53A15 /* APRDetalleViewController.h */,
 				5087313C1764942F00A53A15 /* APRDetalleViewController.m */,
+				50F7ED6E1774A18D005FFBCD /* APREstadoViewController.h */,
+				50F7ED6F1774A18D005FFBCD /* APREstadoViewController.m */,
 				508731201764913D00A53A15 /* Supporting Files */,
 				50970BB7176CC3D700227550 /* APRPlaza.h */,
 				50970BB8176CC3D700227550 /* APRPlaza.m */,
@@ -241,6 +246,7 @@
 				5087313A1764926C00A53A15 /* APRTableViewController1.m in Sources */,
 				5087313D1764942F00A53A15 /* APRDetalleViewController.m in Sources */,
 				50970BB9176CC3D700227550 /* APRPlaza.m in Sources */,
+				50F7ED701774A18D005FFBCD /* APREstadoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
