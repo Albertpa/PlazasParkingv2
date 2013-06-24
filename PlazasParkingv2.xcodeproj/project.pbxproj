@@ -19,6 +19,8 @@
 		508731371764915A00A53A15 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 508731361764915A00A53A15 /* Storyboard.storyboard */; };
 		5087313A1764926C00A53A15 /* APRTableViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 508731391764926C00A53A15 /* APRTableViewController1.m */; };
 		5087313D1764942F00A53A15 /* APRDetalleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5087313C1764942F00A53A15 /* APRDetalleViewController.m */; };
+		508F1A4E17770D2900A7BCE6 /* APRCollectionViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 508F1A4D17770D2900A7BCE6 /* APRCollectionViewController1.m */; };
+		508F1A5117776DFA00A7BCE6 /* APRCollectionCellPlaza.m in Sources */ = {isa = PBXBuildFile; fileRef = 508F1A5017776DFA00A7BCE6 /* APRCollectionCellPlaza.m */; };
 		50970BAC176CC2BA00227550 /* c0.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 50970BA1176CC2BA00227550 /* c0.jpeg */; };
 		50970BAD176CC2BA00227550 /* c1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 50970BA2176CC2BA00227550 /* c1.jpeg */; };
 		50970BAE176CC2BA00227550 /* c2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 50970BA3176CC2BA00227550 /* c2.jpeg */; };
@@ -53,6 +55,10 @@
 		508731391764926C00A53A15 /* APRTableViewController1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APRTableViewController1.m; sourceTree = "<group>"; };
 		5087313B1764942F00A53A15 /* APRDetalleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APRDetalleViewController.h; sourceTree = "<group>"; };
 		5087313C1764942F00A53A15 /* APRDetalleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APRDetalleViewController.m; sourceTree = "<group>"; };
+		508F1A4C17770D2900A7BCE6 /* APRCollectionViewController1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APRCollectionViewController1.h; sourceTree = "<group>"; };
+		508F1A4D17770D2900A7BCE6 /* APRCollectionViewController1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APRCollectionViewController1.m; sourceTree = "<group>"; };
+		508F1A4F17776DFA00A7BCE6 /* APRCollectionCellPlaza.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APRCollectionCellPlaza.h; sourceTree = "<group>"; };
+		508F1A5017776DFA00A7BCE6 /* APRCollectionCellPlaza.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APRCollectionCellPlaza.m; sourceTree = "<group>"; };
 		50970BA1176CC2BA00227550 /* c0.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = c0.jpeg; sourceTree = "<group>"; };
 		50970BA2176CC2BA00227550 /* c1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = c1.jpeg; sourceTree = "<group>"; };
 		50970BA3176CC2BA00227550 /* c2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = c2.jpeg; sourceTree = "<group>"; };
@@ -120,6 +126,8 @@
 				508731291764913D00A53A15 /* APRAppDelegate.m */,
 				508731381764926C00A53A15 /* APRTableViewController1.h */,
 				508731391764926C00A53A15 /* APRTableViewController1.m */,
+				508F1A4C17770D2900A7BCE6 /* APRCollectionViewController1.h */,
+				508F1A4D17770D2900A7BCE6 /* APRCollectionViewController1.m */,
 				5087313B1764942F00A53A15 /* APRDetalleViewController.h */,
 				5087313C1764942F00A53A15 /* APRDetalleViewController.m */,
 				50F7ED6E1774A18D005FFBCD /* APREstadoViewController.h */,
@@ -127,6 +135,8 @@
 				508731201764913D00A53A15 /* Supporting Files */,
 				50970BB7176CC3D700227550 /* APRPlaza.h */,
 				50970BB8176CC3D700227550 /* APRPlaza.m */,
+				508F1A4F17776DFA00A7BCE6 /* APRCollectionCellPlaza.h */,
+				508F1A5017776DFA00A7BCE6 /* APRCollectionCellPlaza.m */,
 			);
 			path = PlazasParkingv2;
 			sourceTree = "<group>";
@@ -247,6 +257,8 @@
 				5087313D1764942F00A53A15 /* APRDetalleViewController.m in Sources */,
 				50970BB9176CC3D700227550 /* APRPlaza.m in Sources */,
 				50F7ED701774A18D005FFBCD /* APREstadoViewController.m in Sources */,
+				508F1A4E17770D2900A7BCE6 /* APRCollectionViewController1.m in Sources */,
+				508F1A5117776DFA00A7BCE6 /* APRCollectionCellPlaza.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
