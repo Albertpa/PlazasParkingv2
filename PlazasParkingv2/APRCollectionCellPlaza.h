@@ -10,6 +10,10 @@
 
 @interface APRCollectionCellPlaza : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *imgPhoto;
+@property (weak, nonatomic) IBOutlet UILabel * lblNumPlazas;
 
 @property NSString *imageFile;
+
+@property NSString *NumPlazas;
+
 @end

@@ -19,6 +19,9 @@
 		508731371764915A00A53A15 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 508731361764915A00A53A15 /* Storyboard.storyboard */; };
 		5087313A1764926C00A53A15 /* APRTableViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 508731391764926C00A53A15 /* APRTableViewController1.m */; };
 		5087313D1764942F00A53A15 /* APRDetalleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5087313C1764942F00A53A15 /* APRDetalleViewController.m */; };
+		508C87EA17789474006ADBE6 /* Plaza.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 508C87E817789474006ADBE6 /* Plaza.xcdatamodeld */; };
+		508C9FC01778A0B300DD19FC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 508C9FBF1778A0B300DD19FC /* CoreData.framework */; };
+		508C9FC31778A2F100DD19FC /* Plaza.m in Sources */ = {isa = PBXBuildFile; fileRef = 508C9FC21778A2F100DD19FC /* Plaza.m */; };
 		508F1A4E17770D2900A7BCE6 /* APRCollectionViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 508F1A4D17770D2900A7BCE6 /* APRCollectionViewController1.m */; };
 		508F1A5117776DFA00A7BCE6 /* APRCollectionCellPlaza.m in Sources */ = {isa = PBXBuildFile; fileRef = 508F1A5017776DFA00A7BCE6 /* APRCollectionCellPlaza.m */; };
 		50970BAC176CC2BA00227550 /* c0.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 50970BA1176CC2BA00227550 /* c0.jpeg */; };
@@ -55,6 +58,11 @@
 		508731391764926C00A53A15 /* APRTableViewController1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APRTableViewController1.m; sourceTree = "<group>"; };
 		5087313B1764942F00A53A15 /* APRDetalleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APRDetalleViewController.h; sourceTree = "<group>"; };
 		5087313C1764942F00A53A15 /* APRDetalleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APRDetalleViewController.m; sourceTree = "<group>"; };
+		508C87E917789474006ADBE6 /* Plaza.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Plaza.xcdatamodel; sourceTree = "<group>"; };
+		508C9FBF1778A0B300DD19FC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		508C9FC11778A2F100DD19FC /* Plaza.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Plaza.h; sourceTree = "<group>"; };
+		508C9FC21778A2F100DD19FC /* Plaza.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Plaza.m; sourceTree = "<group>"; };
+		508C9FC51778A41500DD19FC /* modelo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = modelo.h; sourceTree = "<group>"; };
 		508F1A4C17770D2900A7BCE6 /* APRCollectionViewController1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APRCollectionViewController1.h; sourceTree = "<group>"; };
 		508F1A4D17770D2900A7BCE6 /* APRCollectionViewController1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APRCollectionViewController1.m; sourceTree = "<group>"; };
 		508F1A4F17776DFA00A7BCE6 /* APRCollectionCellPlaza.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APRCollectionCellPlaza.h; sourceTree = "<group>"; };
@@ -81,6 +89,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				508C9FC01778A0B300DD19FC /* CoreData.framework in Frameworks */,
 				5087311A1764913D00A53A15 /* UIKit.framework in Frameworks */,
 				5087311C1764913D00A53A15 /* Foundation.framework in Frameworks */,
 				5087311E1764913D00A53A15 /* CoreGraphics.framework in Frameworks */,
@@ -110,6 +119,7 @@
 		508731181764913D00A53A15 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				508C9FBF1778A0B300DD19FC /* CoreData.framework */,
 				508731191764913D00A53A15 /* UIKit.framework */,
 				5087311B1764913D00A53A15 /* Foundation.framework */,
 				5087311D1764913D00A53A15 /* CoreGraphics.framework */,
@@ -120,6 +130,7 @@
 		5087311F1764913D00A53A15 /* PlazasParkingv2 */ = {
 			isa = PBXGroup;
 			children = (
+				508C9FC41778A31E00DD19FC /* modelo */,
 				50970BA0176CC29800227550 /* images */,
 				508731361764915A00A53A15 /* Storyboard.storyboard */,
 				508731281764913D00A53A15 /* APRAppDelegate.h */,
@@ -153,6 +164,17 @@
 				5087312F1764913D00A53A15 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		508C9FC41778A31E00DD19FC /* modelo */ = {
+			isa = PBXGroup;
+			children = (
+				508C87E817789474006ADBE6 /* Plaza.xcdatamodeld */,
+				508C9FC11778A2F100DD19FC /* Plaza.h */,
+				508C9FC21778A2F100DD19FC /* Plaza.m */,
+				508C9FC51778A41500DD19FC /* modelo.h */,
+			);
+			name = modelo;
 			sourceTree = "<group>";
 		};
 		50970BA0176CC29800227550 /* images */ = {
@@ -259,6 +281,8 @@
 				50F7ED701774A18D005FFBCD /* APREstadoViewController.m in Sources */,
 				508F1A4E17770D2900A7BCE6 /* APRCollectionViewController1.m in Sources */,
 				508F1A5117776DFA00A7BCE6 /* APRCollectionCellPlaza.m in Sources */,
+				508C87EA17789474006ADBE6 /* Plaza.xcdatamodeld in Sources */,
+				508C9FC31778A2F100DD19FC /* Plaza.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,6 +400,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		508C87E817789474006ADBE6 /* Plaza.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				508C87E917789474006ADBE6 /* Plaza.xcdatamodel */,
+			);
+			currentVersion = 508C87E917789474006ADBE6 /* Plaza.xcdatamodel */;
+			path = Plaza.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 5087310E1764913D00A53A15 /* Project object */;
 }

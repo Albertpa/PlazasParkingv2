@@ -193,31 +193,45 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Vcp-7P-Woe">
-                            <size key="itemSize" width="130" height="120"/>
+                            <size key="itemSize" width="90" height="90"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CellFrame" id="UP9-e7-c3f" customClass="APRCollectionCellPlaza">
-                                <rect key="frame" x="0.0" y="0.0" width="130" height="120"/>
+                                <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="130" height="120"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xcr-7B-adl"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d81-5I-Wnx">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="73" id="MKf-Fs-RiZ"/>
+                                                <constraint firstAttribute="height" constant="30" id="nMS-Lc-r6S"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                            <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <size key="shadowOffset" width="2" height="-1"/>
+                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
-                                    <constraint firstItem="Xcr-7B-adl" firstAttribute="bottom" secondItem="UP9-e7-c3f" secondAttribute="bottom" type="default" id="8gG-Ls-Guw"/>
-                                    <constraint firstItem="Xcr-7B-adl" firstAttribute="trailing" secondItem="UP9-e7-c3f" secondAttribute="trailing" type="default" id="Clq-SW-eSq"/>
+                                    <constraint firstItem="Xcr-7B-adl" firstAttribute="trailing" secondItem="UP9-e7-c3f" secondAttribute="trailing" type="default" id="7Ne-Ki-Fy4"/>
+                                    <constraint firstItem="d81-5I-Wnx" firstAttribute="leading" secondItem="UP9-e7-c3f" secondAttribute="leading" constant="13" id="9cZ-zg-ZnN"/>
                                     <constraint firstItem="Xcr-7B-adl" firstAttribute="leading" secondItem="UP9-e7-c3f" secondAttribute="leading" type="default" id="FFy-Xg-vfB"/>
                                     <constraint firstItem="Xcr-7B-adl" firstAttribute="top" secondItem="UP9-e7-c3f" secondAttribute="top" type="default" id="I8s-aZ-aQA"/>
+                                    <constraint firstItem="d81-5I-Wnx" firstAttribute="top" secondItem="UP9-e7-c3f" secondAttribute="top" constant="8" id="RUF-VE-eKr"/>
+                                    <constraint firstItem="Xcr-7B-adl" firstAttribute="bottom" secondItem="UP9-e7-c3f" secondAttribute="bottom" type="default" id="oR2-bV-Eju"/>
                                 </constraints>
                                 <connections>
                                     <outlet property="imgPhoto" destination="Xcr-7B-adl" id="786-cd-6mo"/>
+                                    <outlet property="lblNumPlazas" destination="d81-5I-Wnx" id="RN0-wb-fTS"/>
                                     <segue destination="Qks-5c-kvB" kind="push" identifier="showDetail2" id="v5P-DV-7M8"/>
                                 </connections>
                             </collectionViewCell>
@@ -255,6 +269,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/APRCollectionCellPlaza.h"/>
             <relationships>
                 <relationship kind="outlet" name="imgPhoto" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="lblNumPlazas" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="APRCollectionViewController1" superclassName="UICollectionViewController">

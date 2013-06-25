@@ -21,6 +21,7 @@
 
 -(void)reloadInputViews{
     self.imgPhoto.image =[UIImage imageNamed:self.imageFile];
+    self.lblNumPlazas.text = self.NumPlazas;
 }
 
 

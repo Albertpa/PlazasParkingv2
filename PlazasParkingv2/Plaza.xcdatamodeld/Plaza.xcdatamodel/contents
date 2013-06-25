@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="2061" systemVersion="12D78" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Plaza" representedClassName="Plaza" syncable="YES">
+        <attribute name="estadoPlaza" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fotoPlaza" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="numPlaza" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Plaza" positionX="-135" positionY="-1188" width="128" height="90"/>
+    </elements>
+</model>

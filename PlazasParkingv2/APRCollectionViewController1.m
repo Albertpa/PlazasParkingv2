@@ -35,9 +35,32 @@
     //instanciamos nuestro modelo
     self.modelo3 = [NSMutableArray new];
     //llenamos con datos SOLO LOS OCUPADOS!!!
+    
     APRPlaza * p3 = [[APRPlaza alloc] initWithNombre:@"0C" estado:@"Ocupada" imagen:@"c1.jpeg"];
+    APRPlaza * p4 = [[APRPlaza alloc] initWithNombre:@"1C" estado:@"Ocupada" imagen:@"c2.jpeg"];
+    APRPlaza * p5 = [[APRPlaza alloc] initWithNombre:@"2C" estado:@"Ocupada" imagen:@"c3.jpeg"];
+    APRPlaza * p6 = [[APRPlaza alloc] initWithNombre:@"3C" estado:@"Ocupada" imagen:@"c4.jpeg"];
+    APRPlaza * p7 = [[APRPlaza alloc] initWithNombre:@"0A" estado:@"Ocupada" imagen:@"c1.jpeg"];
+    APRPlaza * p8 = [[APRPlaza alloc] initWithNombre:@"1A" estado:@"Ocupada" imagen:@"c2.jpeg"];
+    APRPlaza * p9 = [[APRPlaza alloc] initWithNombre:@"2A" estado:@"Ocupada" imagen:@"c3.jpeg"];
+    APRPlaza * p10 = [[APRPlaza alloc] initWithNombre:@"3A" estado:@"Ocupada" imagen:@"c4.jpeg"];
+    APRPlaza * p11 = [[APRPlaza alloc] initWithNombre:@"0B" estado:@"Ocupada" imagen:@"c1.jpeg"];
+    APRPlaza * p12 = [[APRPlaza alloc] initWithNombre:@"1B" estado:@"Ocupada" imagen:@"c2.jpeg"];
+    APRPlaza * p13 = [[APRPlaza alloc] initWithNombre:@"2B" estado:@"Ocupada" imagen:@"c3.jpeg"];
+    APRPlaza * p14 = [[APRPlaza alloc] initWithNombre:@"3B" estado:@"Ocupada" imagen:@"c4.jpeg"];
     
     [self.modelo3 addObject:p3];
+    [self.modelo3 addObject:p4];
+    [self.modelo3 addObject:p5];
+    [self.modelo3 addObject:p6];
+    [self.modelo3 addObject:p7];
+    [self.modelo3 addObject:p8];
+    [self.modelo3 addObject:p9];
+    [self.modelo3 addObject:p10];
+    [self.modelo3 addObject:p11];
+    [self.modelo3 addObject:p12];
+    [self.modelo3 addObject:p13];
+    [self.modelo3 addObject:p14];
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,6 +86,7 @@
     APRPlaza * p = [self.modelo3 objectAtIndex:indexPath.row];
     if([p.estado isEqualToString:@"Ocupada"]){
          cell.imageFile = p.imagen;
+         cell.NumPlazas = p.numplaza;
     }
    
 
