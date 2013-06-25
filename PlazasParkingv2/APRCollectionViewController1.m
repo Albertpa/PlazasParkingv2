@@ -17,6 +17,11 @@
 
 @implementation APRCollectionViewController1
 
+-(NSManagedObjectContext *)contexto{
+    APRAppDelegate * app =[[UIApplication sharedApplication] delegate];
+    return app.managedObjectContext;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -31,11 +36,14 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    //SE TENDRA QUE MODIFICAR CON EL CORE DATA
+   
     //instanciamos nuestro modelo
-    self.modelo3 = [NSMutableArray new];
-    //llenamos con datos SOLO LOS OCUPADOS!!!
+    self.modelo3 = [NSArray new];
     
+    //llenamos con datos SOLO LOS OCUPADOS!!!
+    self.modelo3 = [self mostrarOcupadas];
+    /*
+      //SE TENDRA QUE MODIFICAR CON EL CORE DATA
     APRPlaza * p3 = [[APRPlaza alloc] initWithNombre:@"0C" estado:@"Ocupada" imagen:@"c1.jpeg"];
     APRPlaza * p4 = [[APRPlaza alloc] initWithNombre:@"1C" estado:@"Ocupada" imagen:@"c2.jpeg"];
     APRPlaza * p5 = [[APRPlaza alloc] initWithNombre:@"2C" estado:@"Ocupada" imagen:@"c3.jpeg"];
@@ -61,12 +69,41 @@
     [self.modelo3 addObject:p12];
     [self.modelo3 addObject:p13];
     [self.modelo3 addObject:p14];
+    */
+    
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)mostrar:(NSArray *)plazasOcupadas{
+    Plaza * p;
+    NSLog(@"==RES==");
+    NSLog(@"Plaza\t\tEstado\t\tFoto");
+    for(int i = 0; i< plazasOcupadas.count; i++){
+        p = [plazasOcupadas objectAtIndex:i];
+        NSLog(@"%@\t\t%@\t\t%@", p.numPlaza, p.estadoPlaza, p.fotoPlaza);
+        
+    }
+}
+-(NSArray *)mostrarOcupadas{
+    NSError *error;
+    NSFetchRequest * request = [[NSFetchRequest new] initWithEntityName:@"Plaza"];
+    request.predicate = [NSPredicate predicateWithFormat:@"estadoPlaza='Ocupada'"];
+    
+    NSArray * resultado = [self.contexto executeFetchRequest:request error:&error];
+
+    //Aqui, se puede ordenar
+    NSArray * descriptorDeOrdenacion = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"numPlaza" ascending:YES]];
+    resultado = [resultado sortedArrayUsingDescriptors:descriptorDeOrdenacion];
+    
+    NSLog(@"Las plazas ocupadas");
+    [self mostrar:resultado];
+    
+    return resultado;
 }
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
@@ -82,15 +119,20 @@
     APRCollectionCellPlaza * cell =[collectionView dequeueReusableCellWithReuseIdentifier:@"CellFrame" forIndexPath:indexPath];
     //falta el filtro de plazas ocupadas solo y añadir el texto
     //cell.imageFile = [self.modelo3 objectAtIndex:indexPath.row];
-
+    /*
     APRPlaza * p = [self.modelo3 objectAtIndex:indexPath.row];
     if([p.estado isEqualToString:@"Ocupada"]){
          cell.imageFile = p.imagen;
          cell.NumPlazas = p.numplaza;
-    }
-   
+    }*/
 
+        Plaza * p = [self.modelo3 objectAtIndex:indexPath.row];
+        cell.NumPlazas = p.numPlaza;
+        cell.imageFile = p.fotoPlaza;
     
+        NSLog(@"Rows->%d",indexPath.row);
+    
+        NSLog(@"Valores->%@",p.numPlaza);
     
     return cell;
 }

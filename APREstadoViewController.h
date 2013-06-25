@@ -7,12 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "APRAppDelegate.h"
+#import "modelo.h"
 
 @interface APREstadoViewController : UIViewController
+
+@property (weak, readonly) NSManagedObjectContext * contexto;
+
 @property (weak, nonatomic) IBOutlet UILabel *lblPlazasOc;
 
 @property (weak, nonatomic) IBOutlet UILabel *lblPlazasDis;
 
-@property (strong) NSMutableArray * modelo2;
+@property (strong) NSArray * modelo2;
+
 
 @end

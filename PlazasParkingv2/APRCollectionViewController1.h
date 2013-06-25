@@ -7,9 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "APRAppDelegate.h"
+#import "modelo.h"
 
 @interface APRCollectionViewController1 : UICollectionViewController
 
-@property (strong) NSMutableArray * modelo3;
+@property (weak, readonly) NSManagedObjectContext * contexto;
+
+@property (strong) NSArray * modelo3;
+
+-(void)mostrar:(NSArray *)plazasOcupadas;
 
 @end

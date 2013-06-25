@@ -15,6 +15,11 @@
 
 @implementation APREstadoViewController
 
+-(NSManagedObjectContext *)contexto{
+    APRAppDelegate * app =[[UIApplication sharedApplication] delegate];
+    return app.managedObjectContext;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -22,6 +27,23 @@
         // Custom initialization
     }
     return self;
+}
+
+-(NSArray *)mostrarTodos{
+    NSError *error;
+    
+    NSFetchRequest * request = [[NSFetchRequest new] initWithEntityName:@"Plaza"];
+    
+    NSArray * resultado = [self.contexto executeFetchRequest:request error:&error];
+    
+    //Aqui, se puede ordenar
+    NSArray * descriptorDeOrdenacion = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"numPlaza" ascending:YES]];
+    resultado = [resultado sortedArrayUsingDescriptors:descriptorDeOrdenacion];
+    
+    NSLog(@"Las plazas ocupadas");
+    //[self mostrar:resultado];
+    
+    return resultado;
 }
 
 - (void)viewDidLoad
@@ -34,7 +56,9 @@
     
     //SE TENDRA QUE MODIFICAR CON EL CORE DATA
     //instanciamos nuestro modelo
-    self.modelo2 = [NSMutableArray new];
+    self.modelo2 = [NSArray new];
+    self.modelo2 = [self mostrarTodos];
+    /*
     //llenamos con datos
     APRPlaza * p1 = [[APRPlaza alloc] initWithNombre:@"0A" estado:@"Libre" imagen:@"nocar.jpg"];
     APRPlaza * p2 = [[APRPlaza alloc] initWithNombre:@"0B" estado:@"Libre" imagen:@"nocar.jpg"];
@@ -43,8 +67,9 @@
     [self.modelo2 addObject:p1];
     [self.modelo2 addObject:p2];
     [self.modelo2 addObject:p3];
-    for(APRPlaza  *pAux in self.modelo2){
-        if([pAux.estado isEqualToString: @"Libre" ]){
+    */
+    for(Plaza  *pAux in self.modelo2){
+        if([pAux.estadoPlaza isEqualToString: @"Libre" ]){
             auxLi= auxLi+1;
         }else{
             auxOc= auxOc+1;

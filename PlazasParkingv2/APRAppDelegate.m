@@ -152,7 +152,7 @@
     
     NSFetchRequest * busquedaPlazas = [ [NSFetchRequest alloc] initWithEntityName:@"Plaza"];
     
-    //Aqui, si fuera necesario se podria ordenar
+    //Aqui, se puede ordenar
     NSArray * descriptorDeOrdenacion = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"numPlaza" ascending:YES]];
     
     //Recorremos
