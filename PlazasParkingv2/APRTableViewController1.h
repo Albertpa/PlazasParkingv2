@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "APRAppDelegate.h"
+#import "modelo.h"
 
-@interface APRTableViewController1 : UITableViewController
+@interface APRTableViewController1 : UITableViewController <NSFetchedResultsControllerDelegate>
 
+@property (weak,readonly) NSManagedObjectContext * contexto;
+@property (strong, nonatomic) NSFetchedResultsController *frController;
 
 @property (strong) NSMutableArray * modelo;
 

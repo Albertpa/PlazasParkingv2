@@ -32,14 +32,28 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Celda" id="tHl-zR-Dtl">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <connections>
+                                    <segue destination="Qks-5c-kvB" kind="push" identifier="showDetail1" id="V0V-Q4-jTe"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
                     </tableView>
                     <navigationItem key="navigationItem" title="Plazas del parking" id="E2r-Hk-4my"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SMR-D1-dkg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="797" y="-751"/>
+            <point key="canvasLocation" x="809" y="-751"/>
         </scene>
-        <!--Detalle View Controller-->
+        <!--Detalle View Controller - Detalle-->
         <scene sceneID="AqX-kS-cTz">
             <objects>
                 <viewController storyboardIdentifier="detalle" id="Qks-5c-kvB" customClass="APRDetalleViewController" sceneMemberID="viewController">
@@ -62,14 +76,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="DETALLE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5DQ-rs-VGH">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="66" id="6mv-9B-mgx"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -80,14 +86,12 @@
                             <constraint firstAttribute="trailing" secondItem="Vm9-dN-njU" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="JJp-Ke-SI3"/>
                             <constraint firstItem="Mg1-Ih-Iuo" firstAttribute="leading" secondItem="aOQ-up-mcm" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="LNG-Sq-0dr"/>
                             <constraint firstItem="379-iE-V3o" firstAttribute="trailing" secondItem="w1w-0G-ZDy" secondAttribute="trailing" type="default" id="RUB-E8-roB"/>
-                            <constraint firstItem="5DQ-rs-VGH" firstAttribute="top" secondItem="w1w-0G-ZDy" secondAttribute="top" constant="214" id="Rvc-4F-hXh"/>
                             <constraint firstItem="Vm9-dN-njU" firstAttribute="top" secondItem="w1w-0G-ZDy" secondAttribute="top" constant="22" id="S1b-a3-RCK"/>
                             <constraint firstItem="Vm9-dN-njU" firstAttribute="leading" secondItem="Mg1-Ih-Iuo" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="XzG-YD-FBq"/>
                             <constraint firstItem="379-iE-V3o" firstAttribute="leading" secondItem="w1w-0G-ZDy" secondAttribute="leading" type="default" id="arR-0e-geh"/>
-                            <constraint firstItem="5DQ-rs-VGH" firstAttribute="centerX" secondItem="379-iE-V3o" secondAttribute="centerX" type="default" id="bhE-uY-9Ru"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="qQH-JE-i0A"/>
+                    <navigationItem key="navigationItem" title="Detalle" id="qQH-JE-i0A"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e2U-pn-kfl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -277,6 +281,9 @@
         </class>
         <class className="APRDetalleViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/APRDetalleViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="lblDetalle" candidateClass="UILabel"/>
+            </relationships>
         </class>
         <class className="APREstadoViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/APREstadoViewController.h"/>
@@ -312,4 +319,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="V0V-Q4-jTe"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -107,16 +107,25 @@
 }
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return 1;
+    //return 1;
+    return [[self.frController sections] count];
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return self.modelo3.count;
+    //return self.modelo3.count;
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.frController sections][section];
+    return [sectionInfo numberOfObjects];
 }
 
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    APRCollectionCellPlaza * cell;
     
-    APRCollectionCellPlaza * cell =[collectionView dequeueReusableCellWithReuseIdentifier:@"CellFrame" forIndexPath:indexPath];
+    cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CellFrame" forIndexPath:indexPath];
+    
+    /*
+    if(cell == nil){
+    
+    }*/
     //falta el filtro de plazas ocupadas solo y añadir el texto
     //cell.imageFile = [self.modelo3 objectAtIndex:indexPath.row];
     /*
@@ -126,7 +135,8 @@
          cell.NumPlazas = p.numplaza;
     }*/
 
-        Plaza * p = [self.modelo3 objectAtIndex:indexPath.row];
+        //Plaza * p = [self.modelo3 objectAtIndex:indexPath.row];
+        Plaza *p = [self.frController objectAtIndexPath:indexPath];
         cell.NumPlazas = p.numPlaza;
         cell.imageFile = p.fotoPlaza;
     
@@ -141,10 +151,51 @@
     if([segue.identifier isEqualToString:@"showDetail2"]){
         APRDetalleViewController * destino = segue.destinationViewController;
         NSIndexPath * indexPath =[[self.collectionView indexPathsForSelectedItems]objectAtIndex:0];
+        
         //destino.imageFile = [self.album objectAtIndex:indexPath.row];
+        Plaza *p = [self.frController objectAtIndexPath:indexPath];
+        //NSLog(@"entra y es%@", p.numPlaza);
+        destino.plazaDetalle = p.numPlaza;
     }
 }
 
+#pragma mark - Métodos relacionados con NSFetchedResultsController
+
+- (NSFetchedResultsController *)frController
+{
+    if (_frController == nil) {
+        
+        NSFetchRequest *request = [NSFetchRequest new];
+        
+        NSEntityDescription *entidad = [NSEntityDescription entityForName:@"Plaza" inManagedObjectContext:self.contexto];
+        
+        request.entity = entidad;
+        request.predicate = [NSPredicate predicateWithFormat:@"estadoPlaza='Ocupada'"];
+        
+        //recuperar los 10 elementos proximos
+        request.fetchBatchSize = 10;
+        
+        //ordenamos por numero de plaza
+        NSArray * descriptorDeOrdenacion = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"numPlaza" ascending:YES]];
+        
+        //asignamos el orden de los elementos al FetchRequest
+        [request setSortDescriptors:descriptorDeOrdenacion];
+        
+        //creamos el FetchRequestController haciendo uso del contexto y del request
+        _frController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.contexto sectionNameKeyPath:nil cacheName:@"Listado2"];
+        
+        //asignamos el delegado
+        _frController.delegate = self;
+        
+        
+        NSError *error = nil;
+        if (![self.frController performFetch:&error]) {
+            NSLog(@"Upps!! parece que hay un error %@, %@", error, [error userInfo]);
+            abort();
+        }
+    }
+    return _frController;
+}
 
 
 @end

@@ -10,4 +10,8 @@
 
 @interface APRDetalleViewController : UIViewController
 
+
+@property NSString *plazaDetalle;
+
+
 @end

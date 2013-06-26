@@ -8,7 +8,7 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "PlazasParkingv2/APRCollectionCellPlaza.m"
-         timestampString = "393762086.728971"
+         timestampString = "393954741.26995"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "22"
@@ -86,7 +86,7 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "PlazasParkingv2/APRCollectionViewController1.m"
-         timestampString = "393875968.044258"
+         timestampString = "393957047.905897"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "92"
@@ -99,11 +99,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "PlazasParkingv2/APRCollectionViewController1.m"
-         timestampString = "393881945.129359"
+         timestampString = "393957047.905897"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "116"
-         endingLineNumber = "116"
+         startingLineNumber = "119"
+         endingLineNumber = "119"
          landmarkName = "@implementation APRCollectionViewController1"
          landmarkType = "3">
       </FileBreakpoint>
@@ -112,11 +112,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "PlazasParkingv2/APRCollectionViewController1.m"
-         timestampString = "393881946.190075"
+         timestampString = "393957047.905897"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "117"
-         endingLineNumber = "117"
+         startingLineNumber = "120"
+         endingLineNumber = "120"
          landmarkName = "-collectionView:cellForItemAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -125,13 +125,52 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "PlazasParkingv2/APRCollectionViewController1.m"
-         timestampString = "393881951.229836"
+         timestampString = "393957047.905897"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "113"
-         endingLineNumber = "113"
+         startingLineNumber = "114"
+         endingLineNumber = "114"
          landmarkName = "-collectionView:numberOfItemsInSection:"
          landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "PlazasParkingv2/APRTableViewController1.m"
+         timestampString = "393971446.979391"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "290"
+         endingLineNumber = "290"
+         landmarkName = "@implementation APRTableViewController1"
+         landmarkType = "3">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "PlazasParkingv2/APRTableViewController1.m"
+         timestampString = "393971446.979391"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "290"
+         endingLineNumber = "290"
+         landmarkName = "@implementation APRTableViewController1"
+         landmarkType = "3">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "PlazasParkingv2/APRTableViewController1.m"
+         timestampString = "393970196.636547"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "17"
+         endingLineNumber = "17"
+         landmarkName = "@implementation APRTableViewController1"
+         landmarkType = "3">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

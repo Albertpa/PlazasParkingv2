@@ -10,9 +10,10 @@
 #import "APRAppDelegate.h"
 #import "modelo.h"
 
-@interface APRCollectionViewController1 : UICollectionViewController
+@interface APRCollectionViewController1 : UICollectionViewController <NSFetchedResultsControllerDelegate>
 
 @property (weak, readonly) NSManagedObjectContext * contexto;
+@property (strong, nonatomic) NSFetchedResultsController *frController;
 
 @property (strong) NSArray * modelo3;
 
