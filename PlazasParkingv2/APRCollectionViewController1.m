@@ -117,7 +117,20 @@
     return [sectionInfo numberOfObjects];
 }
 
+
+- (void)configurarItem:(APRCollectionCellPlaza *)cell atIndexPath:(NSIndexPath *)indexPath
+{
+    Plaza *p = [self.frController objectAtIndexPath:indexPath];
+    cell.NumPlazas = p.numPlaza;
+    cell.imageFile = p.fotoPlaza;
+    //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    [cell reloadInputViews];
+}
+
+  
+
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    
     APRCollectionCellPlaza * cell;
     
     cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CellFrame" forIndexPath:indexPath];
@@ -136,6 +149,9 @@
     }*/
 
         //Plaza * p = [self.modelo3 objectAtIndex:indexPath.row];
+    
+    
+    /*
         Plaza *p = [self.frController objectAtIndexPath:indexPath];
         cell.NumPlazas = p.numPlaza;
         cell.imageFile = p.fotoPlaza;
@@ -143,7 +159,9 @@
         NSLog(@"Rows->%d",indexPath.row);
     
         NSLog(@"Valores->%@",p.numPlaza);
-    
+    */
+        [self configurarItem:cell atIndexPath:indexPath];
+        
     return cell;
 }
 
@@ -182,7 +200,9 @@
         [request setSortDescriptors:descriptorDeOrdenacion];
         
         //creamos el FetchRequestController haciendo uso del contexto y del request
-        _frController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.contexto sectionNameKeyPath:nil cacheName:@"Listado2"];
+        _frController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.contexto sectionNameKeyPath:nil cacheName:nil];
+        /*
+                 _frController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.contexto sectionNameKeyPath:nil cacheName:@"Listado3"];*/
         
         //asignamos el delegado
         _frController.delegate = self;
@@ -196,6 +216,86 @@
     }
     return _frController;
 }
+
+
+
+/*
+//Es llamado cuando se realizarán cambios en el FetchResultController
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.tableView beginUpdates];
+    
+}
+ */
+
+
+//Es llamado cuando se realiza algún cambio en alguna sección:
+//  -Se ha insertado una nueva seccion
+//  -Se ha eliminado una sección
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
+           atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
+{
+    switch(type) {
+        case NSFetchedResultsChangeInsert:
+            [self.collectionView insertSections:[NSIndexSet indexSetWithIndex:sectionIndex]];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            [self.collectionView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]];
+            break;
+    }
+}
+
+
+
+
+//Es llamado cuando se realiza algún cambio en algún objeto:
+//  -Se ha insertado un nuevo objeto
+//  -Se ha eliminado un objeto
+//  -Se ha actualizado un objeto
+//  -Se ha movido de posición un objeto
+// En esta practica no necesitamos nada mas que el insert i el delete!!!!!
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
+       atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
+      newIndexPath:(NSIndexPath *)newIndexPath
+{
+    //UITableView *tableView = self.tableView;
+    UICollectionView *tableView = self.collectionView;
+    //APRCollectionCellPlaza * plaza = self.collectionView;
+    switch(type) {
+        case NSFetchedResultsChangeInsert:
+            //[tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+             [tableView insertItemsAtIndexPaths:@[newIndexPath]];
+            break;
+            
+        case NSFetchedResultsChangeDelete:
+            //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView deleteItemsAtIndexPaths:@[indexPath]];
+            break;
+            
+        case NSFetchedResultsChangeUpdate:
+            //[self configurarCelda:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            //[self configurarItem: [tableView cellForRowAtIndexPath:indexPath]];
+            break;
+            
+        case NSFetchedResultsChangeMove:
+            /*
+            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            */
+            [tableView deleteItemsAtIndexPaths:@[indexPath]];
+            [tableView insertItemsAtIndexPaths:@[newIndexPath]];
+            break;
+    }
+}
+
+/*
+//Es llamado cuando se se han terminado de realizar los cambios en el FetchResultController
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
+{
+    [self.tableView endUpdates];
+}
+ */
 
 
 @end

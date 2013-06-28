@@ -10,7 +10,7 @@
 #import "APRAppDelegate.h"
 #import "modelo.h"
 
-@interface APREstadoViewController : UIViewController
+@interface APREstadoViewController : UIViewController <NSFetchedResultsControllerDelegate>
 
 @property (weak, readonly) NSManagedObjectContext * contexto;
 
@@ -20,5 +20,8 @@
 
 @property (strong) NSArray * modelo2;
 
+@property (strong, nonatomic) NSFetchedResultsController *frController;
+
+-(void)updateView;
 
 @end

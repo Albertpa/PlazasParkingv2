@@ -7,11 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "APRAppDelegate.h"
+#import "modelo.h"
 
 @interface APRDetalleViewController : UIViewController
 
-
+@property (weak, readonly) NSManagedObjectContext * contexto;
 @property NSString *plazaDetalle;
+
+@property (weak, nonatomic) IBOutlet UISwitch *swchA;
+@property (weak, nonatomic) IBOutlet UIImageView *imgFoto;
+
+- (IBAction)cambiar:(id)sender;
 
 
 @end

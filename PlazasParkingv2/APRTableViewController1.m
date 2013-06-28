@@ -210,7 +210,10 @@
         [request setSortDescriptors:descriptorDeOrdenacion];
         
         //creamos el FetchRequestController haciendo uso del contexto y del request
+        /*
         _frController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.contexto sectionNameKeyPath:nil cacheName:@"Listado"];
+        */
+        _frController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.contexto sectionNameKeyPath:nil cacheName:nil];
         
         //asignamos el delegado
         _frController.delegate = self;
