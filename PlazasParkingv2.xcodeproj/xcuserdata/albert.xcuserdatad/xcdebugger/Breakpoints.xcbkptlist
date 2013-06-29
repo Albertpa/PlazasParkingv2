@@ -125,24 +125,24 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "PlazasParkingv2/APRTableViewController1.m"
-         timestampString = "394127675.585465"
+         timestampString = "394194485.701978"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "293"
-         endingLineNumber = "293"
+         startingLineNumber = "363"
+         endingLineNumber = "363"
          landmarkName = "@implementation APRTableViewController1"
          landmarkType = "3">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "PlazasParkingv2/APRTableViewController1.m"
-         timestampString = "394127675.585465"
+         timestampString = "394194485.701978"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "293"
-         endingLineNumber = "293"
+         startingLineNumber = "363"
+         endingLineNumber = "363"
          landmarkName = "@implementation APRTableViewController1"
          landmarkType = "3">
       </FileBreakpoint>
@@ -171,6 +171,19 @@
          endingLineNumber = "278"
          landmarkName = "-controller:didChangeObject:atIndexPath:forChangeType:newIndexPath:"
          landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "PlazasParkingv2/APRTableViewController1.m"
+         timestampString = "394194485.701978"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "363"
+         endingLineNumber = "363"
+         landmarkName = "@implementation APRTableViewController1"
+         landmarkType = "3">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

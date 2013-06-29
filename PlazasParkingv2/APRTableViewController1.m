@@ -33,7 +33,11 @@
 
 - (void)viewDidLoad
 {
+    
     [super viewDidLoad];
+    
+    [self.tableView setContentOffset:CGPointMake(0,45)];
+    self.resultados = [NSMutableArray new];
     /*
     //SE TENDRA QUE MODIFICAR CON EL CORE DATA
     //instanciamos nuestro modelo
@@ -76,8 +80,12 @@
 //DEPENDIENDO DE LA SECCION DEBEREMOS RETORNAR EL NUMERO DE FILAS CORRESPONDIENTE-------
     // Return the number of rows in the section.
     //return self.modelo.count;
-    id <NSFetchedResultsSectionInfo> sectionInfo = [self.frController sections][section];
-    return [sectionInfo numberOfObjects];
+    if(tableView == self.tableView){
+        id <NSFetchedResultsSectionInfo> sectionInfo = [self.frController sections][section];
+        return [sectionInfo numberOfObjects];
+    }else{
+        return self.resultados.count;
+    }
 }
 
 - (void)configurarCelda:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
@@ -90,29 +98,52 @@
     //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 }
 
+- (void)configurarCeldaDeBusqueda:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+{
+    Plaza *p = [self.resultados objectAtIndex:indexPath.row];
+    cell.textLabel.text = p.numPlaza;
+    cell.detailTextLabel.text = p.estadoPlaza;
+    cell.imageView.image = [UIImage imageNamed:p.fotoPlaza];
+    
+    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+}
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     /*
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     */
-    UITableViewCell *cell;
-    cell  = [tableView dequeueReusableCellWithIdentifier:@"Celda"];
-    
-    if(cell == nil){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"Celda"];
-    }
-    
     // Configure the cell...
     //cell.textLabel.text = [NSString stringWithFormat:@"Celda %d", indexPath.row];
     /*
-    APRPlaza * p = [self.modelo objectAtIndex:indexPath.row];
-    cell.textLabel.text = p.numplaza;
-    cell.detailTextLabel.text = p.estado;
-    cell.imageView.image = [UIImage imageNamed:p.imagen];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    */
-    [self configurarCelda:cell atIndexPath:indexPath];
+     APRPlaza * p = [self.modelo objectAtIndex:indexPath.row];
+     cell.textLabel.text = p.numplaza;
+     cell.detailTextLabel.text = p.estado;
+     cell.imageView.image = [UIImage imageNamed:p.imagen];
+     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+     */
+    
+    static NSString *cellIdentifier = @"Celda";
+    UITableViewCell *cell;
+    
+    if(tableView == self.tableView){
+        cell  = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if(cell == nil){
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"Celda"];
+        }
+        
+        [self configurarCelda:cell atIndexPath:indexPath];
+        
+    }else{
+        cell  = [tableView cellForRowAtIndexPath:indexPath];
+        if(cell == nil){
+            cell = [[UITableViewCell new] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"Celda"];
+        }
+        [self configurarCeldaDeBusqueda:cell atIndexPath:indexPath];
+    }
     return cell;
 }
 
@@ -159,14 +190,17 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    /*
-    //Cuando se selecciona una celda...
-    UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
-    APRDetalleViewController * controladordetalle = [storyboard instantiateViewControllerWithIdentifier:@"detalle"];
-    [self.navigationController pushViewController:controladordetalle animated:YES];
-    //destino.imageFile = [self.album objectAtIndex:indexPath.row];
-    //controladordetalle.plazaDetalle = @"asdf";
-    */
+    
+    //Cuando se selecciona una celda de busqueda...
+    if(tableView != self.tableView){
+        UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
+        APRDetalleViewController * controladordetalle = [storyboard instantiateViewControllerWithIdentifier:@"detalle"];
+        Plaza *p = [self.resultados objectAtIndex:indexPath.row];
+        //NSLog(@"entra y es%@", p.numPlaza);
+        controladordetalle.plazaDetalle = p.numPlaza;
+        
+        [self.navigationController pushViewController:controladordetalle animated:YES];
+    }
 
 }
 
@@ -288,6 +322,42 @@
     [self.tableView endUpdates];
 }
 
+#pragma mark - Métodos delegados de UISearchBarController
+
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller
+shouldReloadTableForSearchString:(NSString *)searchString{
+    
+    [self.resultados removeAllObjects];
+    
+    NSFetchRequest *fetchRequest = [NSFetchRequest alloc];
+    
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"numPlaza contains[cd] %@ or estadoPlaza contains[cd] %@", searchString, searchString];
+    
+    fetchRequest.entity = [NSEntityDescription entityForName:@"Plaza" inManagedObjectContext:self.contexto];
+    
+    //ordenamos por numero de plaza
+    NSArray * descriptorDeOrdenacion = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"numPlaza" ascending:YES]];
+    
+    //asignamos el orden de los elementos al FetchRequest
+    [fetchRequest setSortDescriptors:descriptorDeOrdenacion];
+    
+    NSError *error = nil;
+    NSArray *results = [self.contexto executeFetchRequest:fetchRequest error:&error];
+    
+    if (error) {
+        NSLog(@"Upps!! parece que hay un error %@, %@", error, [error userInfo]);
+        abort();
+    }
+    
+    [self.resultados addObjectsFromArray:results];
+    
+    return YES;
+}
+
+-(void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller{
+    [self.tableView setContentOffset:CGPointMake(0,45)];
+}
 
 
 @end

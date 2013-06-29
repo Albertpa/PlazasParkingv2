@@ -10,11 +10,13 @@
 #import "APRAppDelegate.h"
 #import "modelo.h"
 
-@interface APRTableViewController1 : UITableViewController <NSFetchedResultsControllerDelegate>
+@interface APRTableViewController1 : UITableViewController <NSFetchedResultsControllerDelegate, UISearchBarDelegate>
 
 @property (weak,readonly) NSManagedObjectContext * contexto;
 @property (strong, nonatomic) NSFetchedResultsController *frController;
 
 @property (strong) NSMutableArray * modelo;
+
+@property (strong, nonatomic) NSMutableArray * resultados;
 
 @end
