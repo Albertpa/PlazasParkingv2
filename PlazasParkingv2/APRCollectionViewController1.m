@@ -38,10 +38,14 @@
     
    
     //instanciamos nuestro modelo
-    self.modelo3 = [NSArray new];
+    //self.modelo3 = [NSArray new];
     
     //llenamos con datos SOLO LOS OCUPADOS!!!
-    self.modelo3 = [self mostrarOcupadas];
+    //self.modelo3 = [self mostrarOcupadas];
+    
+    _objectChanges = [NSMutableArray array];
+    _sectionChanges = [NSMutableArray array];
+    _ocupadosArray = [NSMutableArray array];
     /*
       //SE TENDRA QUE MODIFICAR CON EL CORE DATA
     APRPlaza * p3 = [[APRPlaza alloc] initWithNombre:@"0C" estado:@"Ocupada" imagen:@"c1.jpeg"];
@@ -71,6 +75,24 @@
     [self.modelo3 addObject:p14];
     */
     
+}
+
+/*
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:YES];
+    [self.collectionView reloadData];
+}
+*/
+
+-(void)viewWillAppear:(BOOL)animated{
+    
+     NSLog(@"reload data !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    [self obtenerOcupados];
+    [self.collectionView reloadData];
+   
+    
+    
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -107,20 +129,23 @@
 }
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    //return 1;
-    return [[self.frController sections] count];
+    return 1;
+    //return [[self.frController sections] count];
 }
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    //return self.modelo3.count;
+    return self.ocupadosArray.count;
+    /*
     id <NSFetchedResultsSectionInfo> sectionInfo = [self.frController sections][section];
     return [sectionInfo numberOfObjects];
+        */
 }
 
 
 - (void)configurarItem:(APRCollectionCellPlaza *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    Plaza *p = [self.frController objectAtIndexPath:indexPath];
+    //Plaza *p = [self.frController objectAtIndexPath:indexPath];
+    Plaza *p = [self.ocupadosArray objectAtIndex:indexPath.row];
     cell.NumPlazas = p.numPlaza;
     cell.imageFile = p.fotoPlaza;
     //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
@@ -134,44 +159,21 @@
     APRCollectionCellPlaza * cell;
     
     cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"CellFrame" forIndexPath:indexPath];
-    
-    /*
-    if(cell == nil){
-    
-    }*/
-    //falta el filtro de plazas ocupadas solo y añadir el texto
-    //cell.imageFile = [self.modelo3 objectAtIndex:indexPath.row];
-    /*
-    APRPlaza * p = [self.modelo3 objectAtIndex:indexPath.row];
-    if([p.estado isEqualToString:@"Ocupada"]){
-         cell.imageFile = p.imagen;
-         cell.NumPlazas = p.numplaza;
-    }*/
-
-        //Plaza * p = [self.modelo3 objectAtIndex:indexPath.row];
-    
-    
-    /*
-        Plaza *p = [self.frController objectAtIndexPath:indexPath];
-        cell.NumPlazas = p.numPlaza;
-        cell.imageFile = p.fotoPlaza;
-    
-        NSLog(@"Rows->%d",indexPath.row);
-    
-        NSLog(@"Valores->%@",p.numPlaza);
-    */
-        [self configurarItem:cell atIndexPath:indexPath];
+    [self configurarItem:cell atIndexPath:indexPath];
         
     return cell;
+    
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([segue.identifier isEqualToString:@"showDetail2"]){
         APRDetalleViewController * destino = segue.destinationViewController;
-        NSIndexPath * indexPath =[[self.collectionView indexPathsForSelectedItems]objectAtIndex:0];
-        
+        //NSIndexPath * indexPath =[[self.collectionView indexPathsForSelectedItems]objectAtIndex:0];
+        NSIndexPath * indexPath =[[self.collectionView indexPathsForSelectedItems] lastObject];
+
         //destino.imageFile = [self.album objectAtIndex:indexPath.row];
-        Plaza *p = [self.frController objectAtIndexPath:indexPath];
+        //Plaza *p = [self.frController objectAtIndexPath:indexPath];
+        Plaza *p = [self.ocupadosArray objectAtIndex:indexPath.row];
         //NSLog(@"entra y es%@", p.numPlaza);
         destino.plazaDetalle = p.numPlaza;
     }
@@ -181,23 +183,31 @@
 
 - (NSFetchedResultsController *)frController
 {
+   
     if (_frController == nil) {
         
-        NSFetchRequest *request = [NSFetchRequest new];
+        
+        NSFetchRequest *request = [[NSFetchRequest alloc] init]; //[NSFetchRequest new];
         
         NSEntityDescription *entidad = [NSEntityDescription entityForName:@"Plaza" inManagedObjectContext:self.contexto];
         
         request.entity = entidad;
         request.predicate = [NSPredicate predicateWithFormat:@"estadoPlaza='Ocupada'"];
-        
+                
         //recuperar los 10 elementos proximos
-        request.fetchBatchSize = 10;
+        request.fetchBatchSize = 10; //[fetchRequest setFetchBatchSize:20];
         
         //ordenamos por numero de plaza
         NSArray * descriptorDeOrdenacion = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"numPlaza" ascending:YES]];
         
         //asignamos el orden de los elementos al FetchRequest
         [request setSortDescriptors:descriptorDeOrdenacion];
+        
+        /*
+         // Edit the sort key as appropriate.
+         NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"photoName" ascending:NO];
+         NSArray *sortDescriptors = @[sortDescriptor];
+         */
         
         //creamos el FetchRequestController haciendo uso del contexto y del request
         _frController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.contexto sectionNameKeyPath:nil cacheName:nil];
@@ -206,7 +216,6 @@
         
         //asignamos el delegado
         _frController.delegate = self;
-        
         
         NSError *error = nil;
         if (![self.frController performFetch:&error]) {
@@ -220,13 +229,6 @@
 
 
 /*
-//Es llamado cuando se realizarán cambios en el FetchResultController
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller
-{
-    [self.tableView beginUpdates];
-    
-}
- */
 
 
 //Es llamado cuando se realiza algún cambio en alguna sección:
@@ -276,26 +278,160 @@
         case NSFetchedResultsChangeUpdate:
             //[self configurarCelda:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
             //[self configurarItem: [tableView cellForRowAtIndexPath:indexPath]];
+            [self.collectionView reloadData];
             break;
             
         case NSFetchedResultsChangeMove:
-            /*
-            [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            [tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
-            */
+            
+            //[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            //[tableView insertRowsAtIndexPaths:@[newIndexPath] withRowAnimation:UITableViewRowAnimationFade];
+            
             [tableView deleteItemsAtIndexPaths:@[indexPath]];
             [tableView insertItemsAtIndexPaths:@[newIndexPath]];
             break;
     }
 }
+*/
 
 /*
-//Es llamado cuando se se han terminado de realizar los cambios en el FetchResultController
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id <NSFetchedResultsSectionInfo>)sectionInfo
+           atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
+{
+    
+    NSMutableDictionary *change = [NSMutableDictionary new];
+    
+    switch(type) {
+        case NSFetchedResultsChangeInsert:
+            change[@(type)] = @[@(sectionIndex)];
+            break;
+        case NSFetchedResultsChangeDelete:
+            change[@(type)] = @[@(sectionIndex)];
+            break;
+    }
+    
+    [_sectionChanges addObject:change];
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
+       atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
+      newIndexPath:(NSIndexPath *)newIndexPath
+{
+    
+    NSMutableDictionary *change = [NSMutableDictionary new];
+    switch(type)
+    {
+        case NSFetchedResultsChangeInsert:
+            change[@(type)] = newIndexPath;
+            break;
+        case NSFetchedResultsChangeDelete:
+            change[@(type)] = indexPath;
+            break;
+        case NSFetchedResultsChangeUpdate:
+            change[@(type)] = indexPath;
+            break;
+        case NSFetchedResultsChangeMove:
+            change[@(type)] = @[indexPath, newIndexPath];
+            break;
+    }
+    [_objectChanges addObject:change];
+}
+
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
-    [self.tableView endUpdates];
+    if ([_sectionChanges count] > 0)
+    {
+        [self.collectionView performBatchUpdates:^{
+            
+            for (NSDictionary *change in _sectionChanges)
+            {
+                [change enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, id obj, BOOL *stop) {
+                    
+                    NSFetchedResultsChangeType type = [key unsignedIntegerValue];
+                    switch (type)
+                    {
+                        case NSFetchedResultsChangeInsert:
+                            [self.collectionView insertSections:[NSIndexSet indexSetWithIndex:[obj unsignedIntegerValue]]];
+                            break;
+                        case NSFetchedResultsChangeDelete:
+                            [self.collectionView deleteSections:[NSIndexSet indexSetWithIndex:[obj unsignedIntegerValue]]];
+                            break;
+                        case NSFetchedResultsChangeUpdate:
+                            [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:[obj unsignedIntegerValue]]];
+                            break;
+                    }
+                }];
+            }
+        } completion:nil];
+    }
+    
+    if ([_objectChanges count] > 0 && [_sectionChanges count] == 0)
+    {
+        [self.collectionView performBatchUpdates:^{
+            
+            for (NSDictionary *change in _objectChanges)
+            {
+                [change enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, id obj, BOOL *stop) {
+                    
+                    NSFetchedResultsChangeType type = [key unsignedIntegerValue];
+                    switch (type)
+                    {
+                        case NSFetchedResultsChangeInsert:
+                            [self.collectionView insertItemsAtIndexPaths:@[obj]];
+                            
+                            break;
+                        case NSFetchedResultsChangeDelete:
+                            [self.collectionView deleteItemsAtIndexPaths:@[obj]];
+                             
+                            break;
+                        case NSFetchedResultsChangeUpdate:
+                            [self.collectionView reloadItemsAtIndexPaths:@[obj]];
+                             
+                            break;
+                        case NSFetchedResultsChangeMove:
+                            [self.collectionView moveItemAtIndexPath:obj[0] toIndexPath:obj[1]];
+                            
+                            break;
+                    }
+                }];
+            }
+        } completion:nil];
+    }
+    
+    [_sectionChanges removeAllObjects];
+    [_objectChanges removeAllObjects];
 }
- */
+*/
 
+-(void) obtenerOcupados{
+    
+    
+    [self.ocupadosArray removeAllObjects];
+  
+    NSFetchRequest *fetchRequest = [NSFetchRequest alloc];
+    
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"estadoPlaza='Ocupada'"];
+    
+    fetchRequest.entity = [NSEntityDescription entityForName:@"Plaza" inManagedObjectContext:self.contexto];
+    
+    
+    //ordenamos por numero de plaza
+    NSArray * descriptorDeOrdenacion = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"numPlaza" ascending:YES]];
+    //asignamos el orden de los elementos al FetchRequest
+    [fetchRequest setSortDescriptors:descriptorDeOrdenacion];
+    
+    
+    NSError *error = nil;
+    NSArray *results = [self.contexto executeFetchRequest:fetchRequest error:&error];
+    
+    if (error) {
+        NSLog(@"Upps!! parece que hay un error %@, %@", error, [error userInfo]);
+        abort();
+    }
+    
+    [self.ocupadosArray addObjectsFromArray:results];
+    
+   
 
+}
 @end

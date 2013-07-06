@@ -14,9 +14,12 @@
 
 @property (weak,readonly) NSManagedObjectContext * contexto;
 @property (strong, nonatomic) NSFetchedResultsController *frController;
+//@property (strong, nonatomic) NSFetchedResultsController *frControllerBusqueda;
 
 @property (strong) NSMutableArray * modelo;
 
 @property (strong, nonatomic) NSMutableArray * resultados;
+
+@property (nonatomic, copy) NSString *savedSearchTerm;
 
 @end

@@ -16,6 +16,12 @@
 @property (strong, nonatomic) NSFetchedResultsController *frController;
 
 @property (strong) NSArray * modelo3;
+@property (strong) NSMutableArray * ocupadosArray;
+
+@property (strong, nonatomic) NSMutableArray * objectChanges;
+@property (strong, nonatomic) NSMutableArray * sectionChanges;
+
+
 
 -(void)mostrar:(NSArray *)plazasOcupadas;
 

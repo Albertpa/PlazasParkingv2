@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		50870C7B1785D6FC00A02A4A /* APRTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50870C7A1785D6FC00A02A4A /* APRTableViewCell.m */; };
 		5087311A1764913D00A53A15 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 508731191764913D00A53A15 /* UIKit.framework */; };
 		5087311C1764913D00A53A15 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5087311B1764913D00A53A15 /* Foundation.framework */; };
 		5087311E1764913D00A53A15 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5087311D1764913D00A53A15 /* CoreGraphics.framework */; };
@@ -40,6 +41,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		50870C791785D6FC00A02A4A /* APRTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APRTableViewCell.h; sourceTree = "<group>"; };
+		50870C7A1785D6FC00A02A4A /* APRTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APRTableViewCell.m; sourceTree = "<group>"; };
 		508731161764913D00A53A15 /* PlazasParkingv2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlazasParkingv2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		508731191764913D00A53A15 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		5087311B1764913D00A53A15 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -148,6 +151,8 @@
 				50970BB8176CC3D700227550 /* APRPlaza.m */,
 				508F1A4F17776DFA00A7BCE6 /* APRCollectionCellPlaza.h */,
 				508F1A5017776DFA00A7BCE6 /* APRCollectionCellPlaza.m */,
+				50870C791785D6FC00A02A4A /* APRTableViewCell.h */,
+				50870C7A1785D6FC00A02A4A /* APRTableViewCell.m */,
 			);
 			path = PlazasParkingv2;
 			sourceTree = "<group>";
@@ -283,6 +288,7 @@
 				508F1A5117776DFA00A7BCE6 /* APRCollectionCellPlaza.m in Sources */,
 				508C87EA17789474006ADBE6 /* Plaza.xcdatamodeld in Sources */,
 				508C9FC31778A2F100DD19FC /* Plaza.m in Sources */,
+				50870C7B1785D6FC00A02A4A /* APRTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

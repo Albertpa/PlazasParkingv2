@@ -29,7 +29,7 @@
         // Custom initialization
     }
     return self;
-}
+}   
 
 - (void)viewDidLoad
 {
@@ -37,6 +37,7 @@
     [super viewDidLoad];
     
     [self.tableView setContentOffset:CGPointMake(0,45)];
+    
     self.resultados = [NSMutableArray new];
     /*
     //SE TENDRA QUE MODIFICAR CON EL CORE DATA
@@ -57,6 +58,19 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
+/*
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:YES];
+    [self.tableView reloadData];
+}
+*/
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    if(self.savedSearchTerm != nil){
+        //NSLog(@"!!!!!!!!!!!!!!!!!!!!!!! guardat%@", self.savedSearchTerm);
+        self.searchDisplayController.searchBar.text = self.savedSearchTerm;
+    }
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -71,7 +85,12 @@
 
     // Return the number of sections.
     //return 1;
-    return [[self.frController sections] count];
+    if(tableView == self.tableView){
+        return [[self.frController sections] count];
+    }else{
+        //return [[self.frControllerBusqueda sections] count];
+        return self.resultados.count;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -84,6 +103,10 @@
         id <NSFetchedResultsSectionInfo> sectionInfo = [self.frController sections][section];
         return [sectionInfo numberOfObjects];
     }else{
+        /*
+        id <NSFetchedResultsSectionInfo> sectionInfo2 = [self.frControllerBusqueda sections][section];
+        return [sectionInfo2 numberOfObjects];
+        */
         return self.resultados.count;
     }
 }
@@ -101,12 +124,11 @@
 - (void)configurarCeldaDeBusqueda:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     Plaza *p = [self.resultados objectAtIndex:indexPath.row];
+    //Plaza *p = [self.frControllerBusqueda objectAtIndexPath:indexPath];
     cell.textLabel.text = p.numPlaza;
     cell.detailTextLabel.text = p.estadoPlaza;
     cell.imageView.image = [UIImage imageNamed:p.fotoPlaza];
     
-    
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 }
 
 
@@ -128,21 +150,20 @@
     
     static NSString *cellIdentifier = @"Celda";
     UITableViewCell *cell;
-    
+
     if(tableView == self.tableView){
-        cell  = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        if(cell == nil){
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"Celda"];
-        }
-        
+        cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
         [self configurarCelda:cell atIndexPath:indexPath];
         
     }else{
+        NSLog(@"ENTRA===========================================");
         cell  = [tableView cellForRowAtIndexPath:indexPath];
         if(cell == nil){
             cell = [[UITableViewCell new] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"Celda"];
         }
+        
         [self configurarCeldaDeBusqueda:cell atIndexPath:indexPath];
+                
     }
     return cell;
 }
@@ -195,7 +216,9 @@
     if(tableView != self.tableView){
         UIStoryboard * storyboard = [UIStoryboard storyboardWithName:@"Storyboard" bundle:nil];
         APRDetalleViewController * controladordetalle = [storyboard instantiateViewControllerWithIdentifier:@"detalle"];
+        
         Plaza *p = [self.resultados objectAtIndex:indexPath.row];
+         //Plaza *p = [self.frControllerBusqueda objectAtIndexPath:indexPath];
         //NSLog(@"entra y es%@", p.numPlaza);
         controladordetalle.plazaDetalle = p.numPlaza;
         
@@ -253,6 +276,7 @@
         _frController.delegate = self;
         
         
+        
         NSError *error = nil;
         if (![self.frController performFetch:&error]) {
             NSLog(@"Upps!! parece que hay un error %@, %@", error, [error userInfo]);
@@ -294,6 +318,8 @@
        atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
       newIndexPath:(NSIndexPath *)newIndexPath
 {
+    
+    //self.tableView == self.searchDisplayController.searchResultsTableView  
     UITableView *tableView = self.tableView;
     
     switch(type) {
@@ -306,6 +332,16 @@
             break;
             
         case NSFetchedResultsChangeUpdate:
+            /*
+            if(controller == self.frController){
+               NSLog(@"Tabla normal ==========================================================");
+               [self configurarCelda:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+            }else{
+               NSLog(@"Tabla filtrada ==========================================================");
+                [self configurarCeldaDeBusqueda:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
+                //[self.tableView reloadData];
+            }
+            */
             [self configurarCelda:[tableView cellForRowAtIndexPath:indexPath] atIndexPath:indexPath];
             break;
             
@@ -328,19 +364,21 @@
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller
 shouldReloadTableForSearchString:(NSString *)searchString{
     
-    [self.resultados removeAllObjects];
     
+    [self.resultados removeAllObjects];
+    self.savedSearchTerm = searchString;
     NSFetchRequest *fetchRequest = [NSFetchRequest alloc];
     
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"numPlaza contains[cd] %@ or estadoPlaza contains[cd] %@", searchString, searchString];
     
     fetchRequest.entity = [NSEntityDescription entityForName:@"Plaza" inManagedObjectContext:self.contexto];
     
+    
     //ordenamos por numero de plaza
     NSArray * descriptorDeOrdenacion = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"numPlaza" ascending:YES]];
-    
     //asignamos el orden de los elementos al FetchRequest
     [fetchRequest setSortDescriptors:descriptorDeOrdenacion];
+    
     
     NSError *error = nil;
     NSArray *results = [self.contexto executeFetchRequest:fetchRequest error:&error];
@@ -352,11 +390,53 @@ shouldReloadTableForSearchString:(NSString *)searchString{
     
     [self.resultados addObjectsFromArray:results];
     
+     return YES;
+    
+    
+    /*
+    //if (_frControllerBusqueda == nil) {
+        NSFetchRequest *fetchRequest2 = [NSFetchRequest new];
+        
+        NSEntityDescription *entidad2 = [NSEntityDescription entityForName:@"Plaza" inManagedObjectContext:self.contexto];
+        
+        fetchRequest2.predicate = [NSPredicate predicateWithFormat:@"numPlaza contains[cd] %@ or estadoPlaza contains[cd] %@", searchString, searchString];
+
+        fetchRequest2.entity = entidad2;
+        
+        
+        //recuperar los 10 elementos proximos
+        fetchRequest2.fetchBatchSize = 10;
+        
+        //ordenamos por numero de plaza
+        NSArray * descriptorDeOrdenacion2 = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"numPlaza" ascending:YES]];
+        
+        //asignamos el orden de los elementos al FetchRequest
+        [fetchRequest2 setSortDescriptors:descriptorDeOrdenacion2];
+        
+        //creamos el FetchRequestController haciendo uso del contexto y del request
+        
+         //_frController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.contexto sectionNameKeyPath:nil cacheName:@"Listado"];
+         
+        _frControllerBusqueda = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest2 managedObjectContext:self.contexto sectionNameKeyPath:nil cacheName:nil];
+        
+        //asignamos el delegado
+        _frControllerBusqueda.delegate = self;
+
+        NSError *error = nil;
+        if (![self.frControllerBusqueda performFetch:&error]) {
+            NSLog(@"Upps!! parece que hay un error %@, %@", error, [error userInfo]);
+            abort();
+        }
+    //}
+    
     return YES;
+    */
 }
 
 -(void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller{
+    self.savedSearchTerm = nil;
     [self.tableView setContentOffset:CGPointMake(0,45)];
+    
 }
 
 
