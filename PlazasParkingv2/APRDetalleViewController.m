@@ -101,7 +101,13 @@
             //guardamos los datos modificados
             [self.contexto save:&error];
             //[p setA:self.swchA.on];
+          
+            
         }
+    
+    
+    
+    
     }
      
 }

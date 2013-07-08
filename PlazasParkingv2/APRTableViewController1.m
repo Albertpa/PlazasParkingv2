@@ -39,6 +39,14 @@
     [self.tableView setContentOffset:CGPointMake(0,45)];
     
     self.resultados = [NSMutableArray new];
+    
+    //Damos de alta las notificaciones de modificaciones en el modelo
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(cambiosEnElModelo:)
+     name:NSManagedObjectContextObjectsDidChangeNotification
+     object:self.contexto];
+    
     /*
     //SE TENDRA QUE MODIFICAR CON EL CORE DATA
     //instanciamos nuestro modelo
@@ -64,6 +72,7 @@
     [self.tableView reloadData];
 }
 */
+/*
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
     if(self.savedSearchTerm != nil){
@@ -71,6 +80,7 @@
         self.searchDisplayController.searchBar.text = self.savedSearchTerm;
     }
 }
+*/
 
 - (void)didReceiveMemoryWarning
 {
@@ -89,7 +99,7 @@
         return [[self.frController sections] count];
     }else{
         //return [[self.frControllerBusqueda sections] count];
-        return self.resultados.count;
+        return 1;
     }
 }
 
@@ -156,7 +166,6 @@
         [self configurarCelda:cell atIndexPath:indexPath];
         
     }else{
-        NSLog(@"ENTRA===========================================");
         cell  = [tableView cellForRowAtIndexPath:indexPath];
         if(cell == nil){
             cell = [[UITableViewCell new] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"Celda"];
@@ -434,10 +443,17 @@ shouldReloadTableForSearchString:(NSString *)searchString{
 }
 
 -(void)searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller{
-    self.savedSearchTerm = nil;
+    //self.savedSearchTerm = nil;
     [self.tableView setContentOffset:CGPointMake(0,45)];
     
 }
+
+- (void)cambiosEnElModelo:(NSNotification *)notification
+{
+    [self.tableView reloadData];
+    [self.searchDisplayController.searchResultsTableView reloadData];
+}
+
 
 
 @end

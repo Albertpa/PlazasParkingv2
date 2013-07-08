@@ -58,9 +58,7 @@
     // NSLog(@"VIEW DID LOAD===============================================================================");
 	// Do any additional setup after loading the view.
     //APRPlaza * p = [self.modelo objectAtIndex:indexPath.row];
-    int auxOc = 0;
-    int auxLi = 0;
-    
+
     //SE TENDRA QUE MODIFICAR CON EL CORE DATA
     //instanciamos nuestro modelo
     self.modelo2 = [NSArray new];
@@ -92,12 +90,13 @@
     self.lblPlazasOc.text = strPlazasOc;
     self.lblPlazasDis.text = strPlazasLi;
      */
-}
--(void)viewWillAppear:(BOOL)animated{
     
-    [self asignarOcupadas];
-    [self asignarLibres];
-
+    //Damos de alta las notificaciones de modificaciones en el modelo
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(cambiosEnElModelo:)
+     name:NSManagedObjectContextObjectsDidChangeNotification
+     object:self.contexto];
 }
 
 - (void)didReceiveMemoryWarning
@@ -194,6 +193,13 @@
     }
 }
 */
+
+
+- (void)cambiosEnElModelo:(NSNotification *)notification
+{
+    [self asignarOcupadas];
+    [self asignarLibres];
+}
 
 
 @end

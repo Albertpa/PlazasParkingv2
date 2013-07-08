@@ -43,10 +43,9 @@
     //llenamos con datos SOLO LOS OCUPADOS!!!
     //self.modelo3 = [self mostrarOcupadas];
     
-    _objectChanges = [NSMutableArray array];
-    _sectionChanges = [NSMutableArray array];
-    _ocupadosArray = [NSMutableArray array];
-    /*
+    //_objectChanges = [NSMutableArray array];
+    //_sectionChanges = [NSMutableArray array];
+       /*
       //SE TENDRA QUE MODIFICAR CON EL CORE DATA
     APRPlaza * p3 = [[APRPlaza alloc] initWithNombre:@"0C" estado:@"Ocupada" imagen:@"c1.jpeg"];
     APRPlaza * p4 = [[APRPlaza alloc] initWithNombre:@"1C" estado:@"Ocupada" imagen:@"c2.jpeg"];
@@ -75,6 +74,17 @@
     [self.modelo3 addObject:p14];
     */
     
+    _ocupadosArray = [NSMutableArray array];
+    [self obtenerOcupados];
+    //[self.collectionView reloadData];
+    
+    //Damos de alta las notificaciones de modificaciones en el modelo
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+     selector:@selector(cambiosEnElModelo:)
+     name:NSManagedObjectContextObjectsDidChangeNotification
+     object:self.contexto];
+    
 }
 
 /*
@@ -83,24 +93,20 @@
     [self.collectionView reloadData];
 }
 */
-
+/*
 -(void)viewWillAppear:(BOOL)animated{
     
-     NSLog(@"reload data !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     [self obtenerOcupados];
     [self.collectionView reloadData];
-   
-    
-    
 
 }
-
+*/
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+/*
 -(void)mostrar:(NSArray *)plazasOcupadas{
     Plaza * p;
     NSLog(@"==RES==");
@@ -127,6 +133,7 @@
     
     return resultado;
 }
+*/
 
 -(NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
     return 1;
@@ -178,7 +185,7 @@
         destino.plazaDetalle = p.numPlaza;
     }
 }
-
+/*
 #pragma mark - Métodos relacionados con NSFetchedResultsController
 
 - (NSFetchedResultsController *)frController
@@ -195,24 +202,23 @@
         request.predicate = [NSPredicate predicateWithFormat:@"estadoPlaza='Ocupada'"];
                 
         //recuperar los 10 elementos proximos
-        request.fetchBatchSize = 10; //[fetchRequest setFetchBatchSize:20];
-        
+        request.fetchBatchSize = 10;         
         //ordenamos por numero de plaza
         NSArray * descriptorDeOrdenacion = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"numPlaza" ascending:YES]];
         
         //asignamos el orden de los elementos al FetchRequest
         [request setSortDescriptors:descriptorDeOrdenacion];
         
-        /*
+        
          // Edit the sort key as appropriate.
-         NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"photoName" ascending:NO];
-         NSArray *sortDescriptors = @[sortDescriptor];
-         */
+         //NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"photoName" ascending:NO];
+         //NSArray *sortDescriptors = @[sortDescriptor];
+         
         
         //creamos el FetchRequestController haciendo uso del contexto y del request
         _frController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.contexto sectionNameKeyPath:nil cacheName:nil];
-        /*
-                 _frController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.contexto sectionNameKeyPath:nil cacheName:@"Listado3"];*/
+        
+                // _frController = [[NSFetchedResultsController alloc] initWithFetchRequest:request managedObjectContext:self.contexto sectionNameKeyPath:nil cacheName:@"Listado3"];
         
         //asignamos el delegado
         _frController.delegate = self;
@@ -225,7 +231,7 @@
     }
     return _frController;
 }
-
+*/
 
 
 /*
@@ -406,14 +412,19 @@
 -(void) obtenerOcupados{
     
     
+    NSLog(@"OBTENER OCUPADAS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
+     
     [self.ocupadosArray removeAllObjects];
   
     NSFetchRequest *fetchRequest = [NSFetchRequest alloc];
     
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"estadoPlaza='Ocupada'"];
-    
     fetchRequest.entity = [NSEntityDescription entityForName:@"Plaza" inManagedObjectContext:self.contexto];
     
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"estadoPlaza='Ocupada'"];
+    
+    //recuperar los 10 elementos proximos
+    fetchRequest.fetchBatchSize = 10;
     
     //ordenamos por numero de plaza
     NSArray * descriptorDeOrdenacion = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"numPlaza" ascending:YES]];
@@ -433,5 +444,13 @@
     
    
 
+}
+
+- (void)cambiosEnElModelo:(NSNotification *)notification
+{
+    
+         NSLog(@"CAMBIOS EN EL MODELO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    [self obtenerOcupados];
+    [self.collectionView reloadData];
 }
 @end
