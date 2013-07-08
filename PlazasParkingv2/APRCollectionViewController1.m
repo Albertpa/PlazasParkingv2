@@ -410,10 +410,6 @@
 */
 
 -(void) obtenerOcupados{
-    
-    
-    NSLog(@"OBTENER OCUPADAS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-
      
     [self.ocupadosArray removeAllObjects];
   
@@ -441,7 +437,8 @@
     }
     
     [self.ocupadosArray addObjectsFromArray:results];
-    
+    //forzamos la ordenacion, cuando se modifica el modelo no ordena a no ser que lo forcemos a ello
+    [self.ocupadosArray sortUsingDescriptors:descriptorDeOrdenacion];
    
 
 }
@@ -449,8 +446,9 @@
 - (void)cambiosEnElModelo:(NSNotification *)notification
 {
     
-         NSLog(@"CAMBIOS EN EL MODELO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     [self obtenerOcupados];
+    
     [self.collectionView reloadData];
 }
+
 @end
